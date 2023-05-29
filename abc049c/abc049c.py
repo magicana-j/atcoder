@@ -1,12 +1,25 @@
-import os
+def can_reach_target(s):
+    five_ = ["dream", "erase"]
+    seven_ = ["dreamer", "eraser"]
 
-dirname = os.path.dirname(__file__)
+    l = len(s)
 
-in_file = dirname + "/input1.txt"
-f = open(in_file, "r", encoding="UTF-8")
+    if l == 0:
+        return True
+    elif l < 5 or l == 6:
+        return False
+    else:
+        for _ in five_:
+            if _ == s[-5:]:
+                return can_reach_target(s[:-5])
+        for _ in seven_:
+            if _ == s[-7:]:
+                return can_reach_target(s[:-7])
 
-text = f.readlines()
-s = text[0]
-strings = ["dream", "dreamer", "erase", "eraser"]
-t = ""
-answer = "NO"
+
+if __name__ == "__main__":
+    t = input()
+    if can_reach_target(t):
+        print("YES")
+    else:
+        print("NO")
